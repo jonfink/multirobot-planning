@@ -44,6 +44,8 @@ ENDIF (NOT APPLE)
 
 rosbuild_add_library(mr_rrt_simple_planner
   src/CentralizedSimplePlanner.cc)
+target_link_libraries(mr_rrt_simple_planner
+  mr_rrt_planner)
 
 IF (NOT APPLE)
   target_link_libraries(mr_rrt_simple_planner
