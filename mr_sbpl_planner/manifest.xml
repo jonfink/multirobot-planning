@@ -1,0 +1,22 @@
+<package>
+  <description brief="sbpl_planner">
+
+     sbpl_planner
+
+  </description>
+  <author>Jon Fink</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/sbpl_planner</url>
+  <depend package="mr_generic_planner"/>
+  <depend package="sbpl"/>
+
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}
+                                              -L${prefix}/lib -lmr_sbpl_planner"/>
+  </export>
+
+
+</package>
+
+

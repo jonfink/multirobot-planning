@@ -1,0 +1,23 @@
+<package>
+  <description brief="generic_planner">
+
+     generic_planner
+
+  </description>
+  <author>Jon Fink</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/centralized_planner</url>
+  <depend package="nav_msgs"/>
+  <depend package="costmap_2d"/>
+  <depend package="armadillo"/>
+
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}
+                                              -L${prefix}/lib -lmr_generic_planner"/>
+  </export>
+
+
+</package>
+
+

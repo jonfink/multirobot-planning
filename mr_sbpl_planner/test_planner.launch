@@ -1,0 +1,21 @@
+<launch>
+
+  <node pkg="map_server"
+        name="map"
+        type="map_server"
+        output="screen"
+        args="$(find testing_RobustRouting)/maps/levine_towne_map.yaml"/>
+
+  <node pkg="sbpl_planner"
+	name="test_sbpl"
+	type="test_sbpl"
+	respawn="false"
+	output="screen"
+	launch-prefix="xterm -e gdb --args">
+  </node>
+
+ <group ns="vis">
+    <include file="$(find routing_config)/config/central_vis.xml"/>
+ </group>
+
+</launch>

@@ -1,0 +1,23 @@
+<package>
+  <description brief="mr_rrt_planner">
+
+     mr_rrt_planner
+
+  </description>
+  <author>Jon Fink</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/mr_rrt_planner</url>
+  <depend package="mr_generic_planner"/>
+  <depend package="rrts"/>
+
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}
+                                              -L${prefix}/lib -lrrt_planner
+                                              -lrrt_simple_planner"/>
+  </export>
+
+
+</package>
+
+

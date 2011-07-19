@@ -1,0 +1,9 @@
+<stack>
+  <description brief="multirobot-planning">multirobot-planning</description>
+  <author>Maintained by Jon Fink</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/multirobot-planning</url>
+  <depend stack="ros" />
+
+</stack>
