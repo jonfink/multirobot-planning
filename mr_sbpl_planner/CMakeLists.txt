@@ -19,8 +19,8 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 rosbuild_add_library(mr_sbpl_planner
   src/CentralizedSBPLPlanner.cc)
 
-rosbuild_add_executable(test_sbpl
-  src/test_sbpl.cc
+rosbuild_add_executable(mr_sbpl_node
+  src/mr_sbpl_node.cc
   src/CentralizedSBPLPlanner.cc)
 
 #uncomment if you have defined messages
