@@ -40,10 +40,14 @@ class CentralizedPlanner
 
   virtual void SetPrintProgress(bool state);
 
+  virtual bool PlanFailed();
+
  protected:
   bool print_progress;
   Col<double> goal;
   Col<double> goalK;
+
+  bool planning_failed;
 
   // Variables for planning process
   boost::shared_ptr<boost::thread> m_thread;

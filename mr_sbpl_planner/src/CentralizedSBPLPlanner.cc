@@ -151,6 +151,7 @@ PlanConfigurationBlock(map<int, pair<double, double> > &_current_state, double t
   int n = this->goal.n_elem;
   this->time_budget = time_budget;
   this->stop_planning = true;
+  this->planning_failed = false;
 
   if(m_thread) {
     m_thread->join();
@@ -198,10 +199,19 @@ PlanConfigurationBlock(map<int, pair<double, double> > &_current_state, double t
     int solution_cost;
     try{
       ret = planner_->replan(time_budget, &solution_stateIDs, &solution_cost);
-      if(ret)
+      if(ret) {
         ROS_DEBUG("Solution is found\n");
+        planning_failed = false;
+      }
       else{
         ROS_INFO("Solution not found\n");
+        planning_failed = true;
+        {
+          boost::recursive_mutex::scoped_lock lock(planning_state_lock);
+          this->planning = false;
+        }
+        solution_stateIDs.clear();
+        return false;
       }
     }
     catch(SBPL_Exception e){
@@ -234,6 +244,7 @@ PlanConfiguration(map<int, pair<double, double> > &_current_state, double time_b
   int n = this->goal.n_elem;
   this->time_budget = time_budget;
   this->stop_planning = true;
+  this->planning_failed = false;
 
   if(m_thread) {
     m_thread->join();
@@ -338,10 +349,13 @@ void CentralizedSBPLPlanner::PlanningThread()
     int solution_cost;
     try{
       int ret = planner_->replan(time_budget, &solution_stateIDs, &solution_cost);
-      if(ret)
+      if(ret) {
         ROS_DEBUG("Solution is found\n");
+        planning_failed = false;
+      }
       else{
         ROS_INFO("Solution not found\n");
+        planning_failed = true;
       }
     }
     catch(SBPL_Exception e){
@@ -405,6 +419,11 @@ EvaluateState(Col<double> &state, bool extend_state, bool debug)
     unsigned char cost = costmap->getCost(mx, my);
 
     if(cost != costmap_2d::FREE_SPACE) {
+      //printf("OBSTACLE: %2.2f %2.2f\n", xi, yi);
+      //printf("x");
+      return false;
+    }
+    else if(cost != costmap_2d::UNKNOWN_SPACE) {
       //printf("OBSTACLE: %2.2f %2.2f\n", xi, yi);
       //printf("x");
       return false;

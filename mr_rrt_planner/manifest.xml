@@ -13,8 +13,8 @@
 
   <export>
     <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}
-                                              -L${prefix}/lib -lrrt_planner
-                                              -lrrt_simple_planner"/>
+                                              -L${prefix}/lib -lmr_rrt_planner
+                                              -lmr_rrt_simple_planner"/>
   </export>
 
 

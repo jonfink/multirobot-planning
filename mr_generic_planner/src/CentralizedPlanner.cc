@@ -68,6 +68,9 @@ CentralizedPlanner::CentralizedPlanner(ros::NodeHandle *n)
 				       obstacle_range, max_obstacle_height, raytrace_range,
 				       cost_scale, input_data_, lethal_threshold,
 				       track_unknown_space, unknown_cost_value);
+
+  planning_failed = false;
+
  }
 
  void CentralizedPlanner::handle_map(const nav_msgs::OccupancyGrid::ConstPtr &msg)
@@ -220,4 +223,9 @@ EvaluateState(Col<double> &state, bool extend_state, bool debug)
 
 void CentralizedPlanner::TakeCurrentBest()
 {
+}
+
+bool CentralizedPlanner::PlanFailed()
+{
+  return planning_failed;
 }
