@@ -423,11 +423,11 @@ EvaluateState(Col<double> &state, bool extend_state, bool debug)
       //printf("x");
       return false;
     }
-    else if(cost != costmap_2d::UNKNOWN_SPACE) {
-      //printf("OBSTACLE: %2.2f %2.2f\n", xi, yi);
-      //printf("x");
-      return false;
-    }
+    // else if(cost != costmap_2d::NO_INFORMATION) {
+    //   //printf("OBSTACLE: %2.2f %2.2f\n", xi, yi);
+    //   //printf("x");
+    //   return false;
+    // }
   }
 
   return true;
