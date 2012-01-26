@@ -11,7 +11,7 @@ using namespace arma;
 class CentralizedSimplePlanner : public CentralizedRRTPlanner
 {
  public:
-  CentralizedSimplePlanner(ros::NodeHandle *n);
+  CentralizedSimplePlanner(ros::NodeHandle *n, string map_topic="/map");
 
   virtual bool PlanConfiguration(map<int, pair<double, double> > &_current_state, double time_budget=-1.0);
   virtual bool EvaluateState(Col<double> &state, bool extend_state, bool debug=false);

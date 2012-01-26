@@ -20,7 +20,7 @@ using namespace arma;
 class CentralizedRRTPlanner : public CentralizedPlanner
 {
  public:
-  CentralizedRRTPlanner(ros::NodeHandle *n);
+  CentralizedRRTPlanner(ros::NodeHandle *n, string map_topic="/map");
 
   virtual bool PlanConfiguration(map<int, pair<double, double> > &_current_state, double time_budget=-1.0);
 

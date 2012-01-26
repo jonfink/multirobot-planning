@@ -20,7 +20,7 @@ int64_t ts_now ();
 class CentralizedPlanner
 {
  public:
-  CentralizedPlanner(ros::NodeHandle *n);
+  CentralizedPlanner(ros::NodeHandle *n, string map_stopic="/map");
 
   virtual bool PlanConfiguration(map<int, pair<double, double> > &_current_state, double time_budget=-1.0);
   virtual bool PlanConfigurationBlock(map<int, pair<double, double> > &_current_state, double time_budget=-1.0);

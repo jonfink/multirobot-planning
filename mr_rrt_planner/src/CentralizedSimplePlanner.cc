@@ -19,7 +19,7 @@ int centralized_simple_planner_wrapper(void *class_obj, state_t *state, state_t 
   return 1;
 }
 
-CentralizedSimplePlanner::CentralizedSimplePlanner(ros::NodeHandle *n) : CentralizedRRTPlanner(n)
+CentralizedSimplePlanner::CentralizedSimplePlanner(ros::NodeHandle *n, string map_topic) : CentralizedRRTPlanner(n, map_topic)
 {
   n->param("cp_simple/prob_sample_target_before_soln", prob_sample_target_before_soln, 0.0);
   n->param("cp_simple/prob_sample_dynamic_domain_before_soln", prob_sample_dynamic_domain_before_soln, 0.0);

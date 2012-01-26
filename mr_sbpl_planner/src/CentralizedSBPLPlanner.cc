@@ -26,7 +26,7 @@ class LatticeSCQ : public StateChangeQuery{
     mutable std::vector<int> succsOfChangedCells_;
 };
 
-CentralizedSBPLPlanner::CentralizedSBPLPlanner(ros::NodeHandle *n) : CentralizedPlanner(n)
+CentralizedSBPLPlanner::CentralizedSBPLPlanner(ros::NodeHandle *n, string map_topic) : CentralizedPlanner(n, map_topic)
 {
   n->param("sbpl/planner_type", planner_type_, string("ARAPlanner"));
   n->param("sbpl/time_budget", time_budget, 10.0);

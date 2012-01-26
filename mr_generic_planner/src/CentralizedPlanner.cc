@@ -10,11 +10,11 @@ ts_now () {
   return (int64_t) tv.tv_sec * 1000000 + tv.tv_usec;
 }
 
-CentralizedPlanner::CentralizedPlanner(ros::NodeHandle *n)
+CentralizedPlanner::CentralizedPlanner(ros::NodeHandle *n, string map_topic)
 {
   this->map_set = false;
-  ROS_INFO("Requesting the map...\n");
-  map_sub = n->subscribe("/map", 1, &CentralizedPlanner::handle_map, this);
+  ROS_INFO("Requesting the map (topic: %s)...\n", map_topic.c_str());
+  map_sub = n->subscribe(map_topic.c_str(), 1, &CentralizedPlanner::handle_map, this);
 
   ros::Rate r(1.0);
   while(!map_set && ros::ok()){

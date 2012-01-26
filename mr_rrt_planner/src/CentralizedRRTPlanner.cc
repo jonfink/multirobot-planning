@@ -97,8 +97,8 @@ int centralized_rrt_planner_wrapper(void *class_obj, state_t *state, state_t *in
   return 1;
 }
 
-CentralizedRRTPlanner::CentralizedRRTPlanner(ros::NodeHandle *n)
-  : CentralizedPlanner(n)
+CentralizedRRTPlanner::CentralizedRRTPlanner(ros::NodeHandle *n, string map_topic)
+: CentralizedPlanner(n, map_topic)
 {
   // Call this so that glib stuff works in multiple threads
   g_thread_init(NULL);
@@ -314,7 +314,7 @@ GetNodes(list<map<int, pair<double, double> > > &nodes)
   unsigned int k = 0;
 
   {
-    boost::recursive_mutex::scoped_lock lock(opttree_lock);
+    //boost::recursive_mutex::scoped_lock lock(opttree_lock);
 
     GSList *node_ptr = opttree->list_nodes;
     //GSList *node_ptr = opttree->list_samples;

@@ -15,7 +15,7 @@ using namespace arma;
 class CentralizedSBPLPlanner : public CentralizedPlanner
 {
  public:
-  CentralizedSBPLPlanner(ros::NodeHandle *n);
+  CentralizedSBPLPlanner(ros::NodeHandle *n, string map_topic="/map");
 
   bool PlanConfiguration(map<int, pair<double, double> > &_current_state, double time_budget=-1.0);
   bool PlanConfigurationBlock(map<int, pair<double, double> > &_current_state, double time_budget=-1.0);
@@ -43,7 +43,7 @@ class CentralizedSBPLPlanner : public CentralizedPlanner
   SBPLPlanner* planner_;
   EnvironmentNAV2D* env_;
 
-  std::string planner_type_; /**< sbpl method to use for planning.  choices are ARAPlanner and ADPlanner */
+  std::string planner_type_; /**< sbpl method to use for planning. choices are ARAPlanner and ADPlanner */
 
   double initial_epsilon_; /**< initial epsilon for beginning the anytime search */
 
